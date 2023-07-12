@@ -1,10 +1,23 @@
-import './styles/App.css'
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import Home from "./pages/Home"
+import Campgrounds from "./pages/Campgrounds"
+import "./App.css"
 
 const App = () => {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "campgrounds",
+      element: <Campgrounds />
+    },
+  ]);
 
   return (
     <>
-      <h1>Explore the best camps on Earth.</h1>
+      <RouterProvider router={router} />
     </>
   );
 }

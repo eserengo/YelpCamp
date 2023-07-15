@@ -16,3 +16,20 @@
     font-family: "Archivo", serif;
   }
 }
+
+@layer components {
+  .btn {
+    background-color: theme("colors.black");
+    color: theme("colors.white");
+    padding-inline: 24px;
+    padding-block: 8px;
+    border: 1px solid theme("colors.black");
+    border-radius: 4px;
+  }
+
+  .btn-hover {
+    background-color: theme("colors.medium-grey");
+    color: theme("colors.black");
+    box-shadow: 0px 2px 4px theme("colors.dark-grey");
+  }
+}

@@ -5,19 +5,20 @@ const CampgroundDetail = () => {
   const params = useParams();
 
   return (
-    <main className="relative grid grid-cols-3 grid-rows-2 p-4 gap-4">
-      <aside className="col-span-1 row-span-1 border border-medium-grey rounded p-8">
+    <main className="relative flex flex-col md:grid md:grid-cols-3 md:grid-rows-2 p-4 mt-16 sm:mt-12 gap-4">
+      <aside
+        className="max-md:order-2 max-h-fit md:col-span-1 md:row-span-1 border border-medium-grey rounded p-8">
         <img
           src="../src/assets/page_images/Map.png"
           alt="location map"
-          className="rounded h-full" />
+          className="rounded m-auto" />
       </aside>
       {campgroundsData.filter(dataItem => dataItem.id == params.id)
         .map(filteredItem => {
           return (
             <section
               key={`detail_${filteredItem.id}`}
-              className="col-start-2 col-span-2 row-span-1 flex flex-col flex-nowrap gap-2 border border-medium-grey rounded p-4">
+              className="max-md:order-1 md:col-start-2 md:col-span-2 md:row-span-1 flex flex-col flex-nowrap gap-2 border border-medium-grey rounded p-4">
               <img
                 src={filteredItem.picture}
                 alt={filteredItem.summary}
@@ -40,7 +41,8 @@ const CampgroundDetail = () => {
           )
         })
       }
-      <section className="col-start-2 col-span-2 row-start-2 row-span-1 flex flex-col flex-nowrap items-end p-4 border border-medium-grey rounded">
+      <section
+        className="max-md:order-3 md:col-start-2 md:col-span-2 md:row-start-2 md:row-span-1 flex flex-col flex-nowrap items-end p-4 border border-medium-grey rounded">
         {campgroundsData.map(dataItem => {
           return (
             dataItem.id == "comments" &&
@@ -71,7 +73,7 @@ const CampgroundDetail = () => {
           to={"../add_comment"}>
           <button
             type="button"
-            className="btn hover:btn-hover my-8 w-72">
+            className="btn hover:btn-hover my-8">
             <img
               src="../src/assets/page_svg/Chat_Bubble.svg"
               alt="chat bubble"
@@ -82,7 +84,7 @@ const CampgroundDetail = () => {
       </section>
       <Link
         to={"/campgrounds"}
-        className="absolute left-4 bottom-4">
+        className="absolute left-4 right-4 -top-16 sm:-top-12">
         <button
           type="button"
           className="btn hover:btn-hover">

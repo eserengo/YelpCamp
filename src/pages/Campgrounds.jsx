@@ -36,7 +36,10 @@ const Campgrounds = () => {
             onClick={eventHandlers.handleReset}>
             &larr; Back to Campgrounds full list
           </button>
-          <List source={campgroundsData.filter(dataItem => dataItem.id != 'comments' && dataItem.label.toLowerCase() == isSearching.toLowerCase())} />
+          <List source={campgroundsData.filter(dataItem => {
+            dataItem.id != 'comments' &&
+              dataItem.label.toLowerCase() == isSearching.toLowerCase()
+          })} />
         </section>
       }
     </main>

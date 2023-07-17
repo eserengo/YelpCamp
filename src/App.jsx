@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef } from "react"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Home from "./pages/Home"
 import Layout from "./pages/Layout"
@@ -18,25 +18,24 @@ const App = () => {
   const userNameRef = useRef(null);
   const userPasswordRef = useRef(null);
 
-  useEffect(() => console.log(auth),);
-
-  const handleUserLogin = (event) => {
-    event.preventDefault();
-    (userNameRef.current.value == "" || userPasswordRef.current.value == "")
-    ? null
-    : setAuth({
-        isLoggedIn: true,
-        userName: userNameRef.current.value,
-        password: userPasswordRef.current.value,
+  const eventHandlers = {
+    handleUserLogin: (event) => {
+      event.preventDefault();
+      (userNameRef.current.value == "" || userPasswordRef.current.value == "")
+        ? null
+        : setAuth({
+          isLoggedIn: true,
+          userName: userNameRef.current.value,
+          password: userPasswordRef.current.value,
+        });
+    },
+    handleUserLogout: () => {
+      setAuth({
+        isLoggedIn: false,
+        userName: "",
+        password: "",
       });
-  };
-
-  const handleUserLogout = () => {
-    setAuth({
-      isLoggedIn: false,
-      userName: "",
-      password: "",
-    });
+    },
   };
 
   const router = createBrowserRouter([
@@ -46,7 +45,7 @@ const App = () => {
     },
     {
       path: "campgrounds",
-      element: <Layout state={auth} eventHandler={handleUserLogout} />,
+      element: <Layout state={auth} eventHandler={eventHandlers.handleUserLogout} />,
       children: [
         {
           index: true,
@@ -68,7 +67,7 @@ const App = () => {
     },
     {
       path: "login",
-      element: <Login eventHandler={handleUserLogin} ref={{userNameRef, userPasswordRef}} />,
+      element: <Login eventHandler={eventHandlers.handleUserLogin} ref={{userNameRef, userPasswordRef}} />,
     },
   ]);
 
